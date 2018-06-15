@@ -1,8 +1,8 @@
 {
-  "name": "kepler.gl",
-  "author": "Shan He <shan@uber.com>",
-  "version": "0.0.22",
-  "description": "kepler.gl is a webgl based application to visualize large scale location data in the browser",
+  "name": "brahe",
+  "author": "Ariel Nunez <ariel@piensa>",
+  "version": "0.0.1",
+  "description": "Brahe is an experiment on top of kepler.gl: a webgl based application to visualize large scale location data in the browser",
   "license": "MIT",
   "main": "dist/index.js",
   "engines": {
@@ -20,7 +20,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/uber/kepler.gl.git"
+    "url": "https://github.com/piensa/brahe.git"
   },
   "scripts": {
     "install:example": "cd examples/demo-app && npm i",
@@ -32,7 +32,7 @@
     "start": "cd examples/demo-app && (path-exists node_modules || npm i) && npm run start-local",
     "start:custom-layer": "(cd examples/custom-layer && (path-exists node_modules || npm i) && npm run start-local)",
     "start:open-modal": "(cd examples/open-modal && (path-exists node_modules || npm i) && npm run start-local)",
-    "build": "rm -fr dist && uber-licence && babel src --out-dir dist --plugins=transform-es2015-modules-commonjs --source-maps inline",
+    "build": "rm -fr dist && babel src --out-dir dist --plugins=transform-es2015-modules-commonjs --source-maps inline",
     "lint": "eslint src examples/**/src website/src",
     "check-licence": "uber-licence --dry",
     "add-licence": "uber-licence",

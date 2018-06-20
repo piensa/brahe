@@ -22,8 +22,6 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
 import window from 'global/window';
 import {connect} from 'react-redux';
-import Banner from './components/banner';
-import Announcement from './components/announcement';
 
 import {loadSampleConfigurations} from './actions';
 import {replaceLoadDataModal} from './factories/load-data-modal';
@@ -43,8 +41,6 @@ import {updateVisData, addDataToMap} from 'kepler.gl/actions';
 import Processors from 'kepler.gl/processors';
 /* eslint-enable no-unused-vars */
 
-const bannerHeight = 30;
-
 const GlobalStyleDiv = styled.div`
   font-family: ff-clan-web-pro, 'Helvetica Neue', Helvetica, sans-serif;
   font-weight: 400;
@@ -62,7 +58,6 @@ const GlobalStyleDiv = styled.div`
 
 class App extends Component {
   state = {
-    showBanner: false,
     width: window.innerWidth,
     height: window.innerHeight
   };
@@ -77,10 +72,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // delay 2s to show the banner
-    // if (!window.localStorage.getItem('kgHideBanner')) {
-    //   window.setTimeout(this._showBanner, 3000);
-    // }
     // load sample data
     // this._loadSampleData();
   }
@@ -94,19 +85,6 @@ class App extends Component {
       width: window.innerWidth,
       height: window.innerHeight
     });
-  };
-
-  _showBanner = () => {
-    this.setState({showBanner: true});
-  };
-
-  _hideBanner = () => {
-    this.setState({showBanner: false});
-  };
-
-  _disableBanner = () => {
-    this._hideBanner();
-    window.localStorage.setItem('kgHideBanner', 'true');
   };
 
   _loadSampleData() {
@@ -169,38 +147,18 @@ class App extends Component {
   }
 
   render() {
-    const {showBanner, width, height} = this.state;
+    const {width, height} = this.state;
     return (
       <GlobalStyleDiv>
-        <Banner
-          show={this.state.showBanner}
-          height={bannerHeight}
-          onClose={this._hideBanner}
-        >
-          <Announcement onDisable={this._disableBanner}/>
-        </Banner>
-        <div
-          style={{
-            transition: 'margin 1s, height 1s',
-            position: 'absolute',
-            width: '100%',
-            height: showBanner ? `calc(100% - ${bannerHeight}px)` : '100%',
-            minHeight: `calc(100% - ${bannerHeight}px)`,
-            marginTop: showBanner ? `${bannerHeight}px` : 0
-          }}
-        >
           <KeplerGl
             mapboxApiAccessToken={MAPBOX_TOKEN}
             id="map"
-            /*
-             * Specify path to keplerGl state, because it is not mount at the root
-             */
+
+            // Specify path to keplerGl state, because it is not mount at the root
             getState={state => state.demo.keplerGl}
             width={width}
-            height={height - (showBanner ? bannerHeight : 0)}
+            height={height}
           />
-
-        </div>
       </GlobalStyleDiv>
     );
   }

@@ -25,14 +25,19 @@
 const resolve = require('path').resolve;
 const join = require('path').join;
 const webpack = require('webpack');
+const path = require('path');
 
 const CONFIG = {
   // bundle app.js and everything it imports, recursively.
   entry: {
     app: resolve('./src/main.js')
   },
+  output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, './dist')
+  },
 
-  devtool: 'source-map',
+  // devtool: 'source-map',
 
   resolve: {
     // Make src files outside of this dir resolve modules in our node_modules folder

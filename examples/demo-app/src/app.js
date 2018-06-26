@@ -36,6 +36,8 @@ const MAPBOX_TOKEN = process.env.MapboxAccessToken; // eslint-disable-line
 /* eslint-disable no-unused-vars */
 import sampleTripData from './data/sample-trip-data';
 import sampleGeojson from './data/sample-geojson.json';
+import colombiaJson from './data/colombia.json';
+
 import sampleIconCsv, {config as savedMapConfig} from './data/sample-icon-csv';
 import {updateVisData, addDataToMap} from 'kepler.gl/actions';
 import Processors from 'kepler.gl/processors';
@@ -66,14 +68,20 @@ class App extends Component {
     // if we pass an id as part f the url
     // we ry to fetch along map configurations
     const {params: {id: sampleMapId} = {}} = this.props;
-    this.props.dispatch(loadSampleConfigurations(sampleMapId));
+
+    if (sampleMapId !== 'sampleData') {
+        this.props.dispatch(loadSampleConfigurations(sampleMapId));
+    }
+
     window.addEventListener('resize', this._onResize);
     this._onResize();
   }
 
   componentDidMount() {
     // load sample data
-    // this._loadSampleData();
+    if (this.props.params.id === 'sampleData') {
+        this._loadSampleData();
+    }
   }
 
   componentWillUnmount() {
@@ -88,62 +96,80 @@ class App extends Component {
   };
 
   _loadSampleData() {
+    const { datasets: [{ data }], config } = colombiaJson;
     this.props.dispatch(
-      updateVisData(
-        // datasets
-        {
-          info: {
-            label: 'Sample Taxi Trips in New York City',
-            id: 'test_trip_data'
-          },
-          data: sampleTripData
-        },
-        // option
-        {
-          centerMap: true,
-          readOnly: false
-        },
-        // config
-        {
-          filters: [
-            {
-              id: 'me',
-              dataId: 'test_trip_data',
-              name: 'tpep_pickup_datetime',
-              type: 'timeRange',
-              enlarged: true
-            }
-          ]
-        }
-      )
+        addDataToMap({
+            config,
+            datasets:  [{
+                data: {
+                    fields: data.fields,
+                    rows: data.allData
+                },
+                info: {
+                    color: data.color,
+                    id: data.id,
+                    label: data.label
+                }
+            }]
+        })
     );
+
+    // this.props.dispatch(
+    //   updateVisData(
+    //     // datasets
+    //     {
+    //       info: {
+    //         label: 'Sample Taxi Trips in New York City',
+    //         id: 'test_trip_data'
+    //       },
+    //       data: sampleTripData
+    //     },
+    //     // option
+    //     {
+    //       centerMap: true,
+    //       readOnly: false
+    //     },
+    //     // config
+    //     {
+    //       filters: [
+    //         {
+    //           id: 'me',
+    //           dataId: 'test_trip_data',
+    //           name: 'tpep_pickup_datetime',
+    //           type: 'timeRange',
+    //           enlarged: true
+    //         }
+    //       ]
+    //     }
+    //   )
+    // );
 
     // load icon data and config and process csv file
-    this.props.dispatch(
-      addDataToMap({
-        datasets: [
-          {
-            info: {
-              label: 'Icon Data',
-              id: 'test_icon_data'
-            },
-            data: Processors.processCsvData(sampleIconCsv)
-          }
-        ],
-        options: {
-          centerMap: false
-        },
-        config: savedMapConfig
-      })
-    );
+    // this.props.dispatch(
+    //   addDataToMap({
+    //     datasets: [
+    //       {
+    //         info: {
+    //           label: 'Icon Data',
+    //           id: 'test_icon_data'
+    //         },
+    //         data: Processors.processCsvData(sampleIconCsv)
+    //       }
+    //     ],
+    //     options: {
+    //       centerMap: false
+    //     },
+    //     config: savedMapConfig
+    //   })
+    // );
 
-    // load geojson
-    this.props.dispatch(
-      updateVisData({
-        info: {label: 'SF Zip Geo'},
-        data: Processors.processGeojson(sampleGeojson)
-      })
-    );
+    // // load geojson
+    // this.props.dispatch(
+    //   updateVisData({
+    //     // info: {label: 'SF Zip Geo'},
+    //     data: Processors.processGeojson(sampleGeojson)
+    //   })
+    // );
   }
 
   render() {
@@ -153,7 +179,6 @@ class App extends Component {
           <KeplerGl
             mapboxApiAccessToken={MAPBOX_TOKEN}
             id="map"
-
             // Specify path to keplerGl state, because it is not mount at the root
             getState={state => state.demo.keplerGl}
             width={width}

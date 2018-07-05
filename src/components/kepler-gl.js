@@ -133,6 +133,9 @@ function KeplerGlFactory(
     _loadMapStyle = () => {
       [...this.props.mapStyles, ...Object.values(DEFAULT_MAP_STYLES)].forEach(
         style => {
+          if (!style.defaultVisibility) {
+            return;
+          }
           if (style.style) {
             this.props.mapStyleActions.loadMapStyles({
               [style.id]: style

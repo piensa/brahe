@@ -130,35 +130,40 @@ export const DEFAULT_MAP_STYLES = [
     label: 'Mobility3d',
     style: mobility3dStyle,
     icon: `data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDACYaHSEdGCYhHyErKCYtOV8+OTQ0OXVTWEVfinmRj4h5hYOYq9u6mKLPpIOFvv/Bz+Lp9fj1lLf////u/9vw9ez/2wBDASgrKzkyOXA+PnDsnYWd7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Oz/wgARCAAyAEYDAREAAhEBAxEB/8QAGQABAQEBAQEAAAAAAAAAAAAAAAMCBAEF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAamgACZxWCkdRtcpAEydAUjrJHNQpEqAFYsaOYxW4xXgANRcgWMkaAAFo61HzrAAB1xaUf/EACAQAAEEAgIDAQAAAAAAAAAAAAEAAhESAxATICIwMTL/2gAIAQEAAQUCabdnOrtpQOnGo5EMhl48t2QMjL8UKCerXwrNcGtATgUFbsCQrWZBXGuM98c39GL86//EABQRAQAAAAAAAAAAAAAAAAAAAFD/2gAIAQMBAT8Bf//EABQRAQAAAAAAAAAAAAAAAAAAAFD/2gAIAQIBAT8Bf//EAB8QAAIABgMBAAAAAAAAAAAAAAARARAgITFRMEBBYf/aAAgBAQAGPwLhWz7PBcjSyE91XHAalh1WF6Y6v//EACMQAQACAQMEAgMAAAAAAAAAAAEAETEgIVEQQWGBMJFxsfH/2gAIAQEAAT8hEWaj8njrU8Iu2cM9BsZixUFMxD7tAikyfqVcepAXBc2NO35jYRNvbS23JGkVTvT5ltUKnv6YAyFyxritOQVBN/WeZDm/URxTrSGXn4R1f//aAAwDAQACAAMAAAAQEkkFrsPftrrNdtrpdZttbf8Abbb5Lbbbl//EABQRAQAAAAAAAAAAAAAAAAAAAFD/2gAIAQMBAT8Qf//EABkRAAIDAQAAAAAAAAAAAAAAAAERABAwIP/aAAgBAgEBPxDVRdjBUdHH2cTf/8QAIRABAAIBBAIDAQAAAAAAAAAAAREhACAxQVEQYTBx8KH/2gAIAQEAAT8QtrW48ahoiX8nyyyShZiHvIjXWO/fi0TcAcuLdg8MzjgEIF2gysVJt1Og2pWPfRwwCJ46xMEbmX3+nEIRdBOSS2cBwBUISrD60jzPT1iuA6aTCpGREnErgVXJZoxTAjhDOvbiW0k8NaVbfpkgylG0Mrn+GQBvrw2xxkHDMa1BQhFvUV8ISYJW3z//2Q==`,
-    layerGroups: DEFAULT_LAYER_GROUPS
+    layerGroups: DEFAULT_LAYER_GROUPS,
+    defaultVisibility: true
   },
   {
     id: 'dark',
     label: 'Dark',
     url: `${STYLE_PREFIX}/dark`,
     icon: `${ICON_PREFIX}/UBER_DARK_V2.png`,
-    layerGroups: DEFAULT_LAYER_GROUPS
+    layerGroups: DEFAULT_LAYER_GROUPS,
+    defaultVisibility: false
   },
   {
     id: 'light',
     label: 'Light',
     url: `${STYLE_PREFIX}/light`,
     icon: `${ICON_PREFIX}/UBER_LIGHT_V2.png`,
-    layerGroups: DEFAULT_LAYER_GROUPS
+    layerGroups: DEFAULT_LAYER_GROUPS,
+    defaultVisibility: false
   },
   {
     id: 'muted',
     label: 'Muted Light',
     url: `${STYLE_PREFIX}/muted-light`,
     icon: `${ICON_PREFIX}/UBER_MUTED_LIGHT.png`,
-    layerGroups: DEFAULT_LAYER_GROUPS
+    layerGroups: DEFAULT_LAYER_GROUPS,
+    defaultVisibility: false
   },
   {
     id: 'muted_night',
     label: 'Muted Night',
     url: `${STYLE_PREFIX}/muted-night`,
     icon: `${ICON_PREFIX}/UBER_MUTED_NIGHT.png`,
-    layerGroups: DEFAULT_LAYER_GROUPS
+    layerGroups: DEFAULT_LAYER_GROUPS,
+    defaultVisibility: false
   }
 ];
 

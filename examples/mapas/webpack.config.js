@@ -33,8 +33,9 @@ const CONFIG = {
     app: resolve('./src/main.js')
   },
   output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, './dist')
+        filename: 'mapas.js',
+        path: path.resolve(__dirname, './dist'),
+        libraryTarget: "umd2"
   },
 
   // devtool: 'source-map',

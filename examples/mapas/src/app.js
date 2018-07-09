@@ -34,7 +34,7 @@ const MAPBOX_TOKEN = process.env.MapboxAccessToken; // eslint-disable-line
 
 // Sample data
 /* eslint-disable no-unused-vars */
-import colombiaJson from './data/colombia.json';
+// import colombiaJson from './data/colombia.json';
 
 import {updateVisData, addDataToMap} from 'kepler.gl/actions';
 /* eslint-enable no-unused-vars */
@@ -75,9 +75,13 @@ class App extends Component {
 
   componentDidMount() {
     // load sample data
-    if (this.props.params.id === 'sampleData') {
-        this._loadSampleData();
-    }
+    const mapNameUrl = this.props.demo.app.mapName;
+
+    fetch(mapNameUrl)
+      .then(res =>  res.json())
+      .then(data => {
+        this._loadSampleData(data);
+      });
   }
 
   componentWillUnmount() {
@@ -91,7 +95,7 @@ class App extends Component {
     });
   };
 
-  _loadSampleData() {
+  _loadSampleData(colombiaJson) {
     const { datasets: [{ data }], config } = colombiaJson;
     this.props.dispatch(
         addDataToMap({

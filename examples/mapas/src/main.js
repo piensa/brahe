@@ -41,4 +41,11 @@ const Root = () => (
   </Provider>
 );
 
-render(<Root />, document.body.appendChild(document.createElement('div')));
+// export fn?
+export const RenderMapas = mapName => {
+  if (mapName) {
+    store.dispatch({type: 'MAP_NAME', mapName});
+  }
+
+  render(<Root />, document.body.appendChild(document.createElement('div')));
+}

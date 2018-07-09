@@ -43,7 +43,8 @@ const initialAppState = {
   currentOption: DEFAULT_LOADING_METHOD.options[0],
   previousMethod: null,
   sampleMaps: [], // this is used to store sample maps fetch from a remote json file
-  isMapLoading: false // determine whether we are loading a sample map
+  isMapLoading: false, // determine whether we are loading a sample map
+  mapName: null
 };
 
 // App reducer
@@ -64,6 +65,10 @@ export const appReducer = handleActions({
   [SET_SAMPLE_LOADING_STATUS]: (state, action) => ({
     ...state,
     isMapLoading: action.isMapLoading
+  }),
+  'MAP_NAME': (state, action) => ({
+    ...state,
+    mapName: action.mapName
   })
 }, initialAppState);
 

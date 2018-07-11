@@ -41,7 +41,6 @@ const Root = () => (
   </Provider>
 );
 
-// export fn?
 export const RenderMapas = mapName => {
   if (mapName) {
     store.dispatch({type: 'MAP_NAME', mapName});

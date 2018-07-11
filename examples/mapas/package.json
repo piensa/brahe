@@ -10,7 +10,7 @@
     "build": "webpack --env.es6",
     "dev": "webpack -d --watch --env.es6",
     "prepare": "npm run build",
-    "zip": "npm run build && zip -r brahe.zip index.html dist/bundle.js"
+    "zip": "npm run build && zip -r mapas.zip index.html colombia.json dist/mapas.js"
   },
   "dependencies": {
     "d3-request": "^1.0.6",

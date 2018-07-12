@@ -36,6 +36,7 @@ const FileDrop =
 // it requires multiple files to be present.
 const defaultValidFileExt = [
   'csv',
+  'tsv',
   // 'tar.gz',
   // 'tgz',
   // 'zip',

@@ -19,11 +19,12 @@
 // THE SOFTWARE.
 
 import {FileReader} from 'global/window';
-import {processCsvData, processGeojson} from './data-processor';
+import {processCsvData, processTsvData, processGeojson} from './data-processor';
 import KeplerGlSchema from 'schemas';
 
 const FILE_HANDLERS = {
   csv: loadCsv,
+  tsv: loadTsv,
   json: loadJSON
 };
 
@@ -35,6 +36,10 @@ export function getFileHandler(fileBlob) {
 export function getFileType(filename) {
   if (filename.endsWith('csv')) {
     return 'csv';
+  }
+
+  else if (filename.endsWith('tsv')) {
+    return 'tsv';
   }
 
   else if (filename.endsWith('json') || filename.endsWith('geojson')) {
@@ -57,10 +62,18 @@ function readCSVFile(fileBlob) {
   });
 }
 
-export function loadCsv(fileBlob, processor = processCsvData) {
+function loadDsv(fileBlob, processor = processCsvData) {
   return readCSVFile(fileBlob).then(
     rawData => (rawData ? processor(rawData) : null)
   );
+}
+
+export function loadCsv(fileBlob) {
+  return loadDsv(fileBlob);
+}
+
+export function loadTsv(fileBlob) {
+  return loadDsv(fileBlob, processTsvData);
 }
 
 function readJSONFile(fileBlob) {

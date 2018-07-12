@@ -18,7 +18,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import {csvParseRows, csvFormatRows} from 'd3-dsv';
+import {csvParseRows, csvFormatRows, tsvParseRows} from 'd3-dsv';
 import {range} from 'd3-array';
 import {console as globalConsole} from 'global/window';
 import assert from 'assert';
@@ -37,6 +37,17 @@ export function processCsvData(rawData) {
   //TODO: add a alert at upload csv to remind define first row
   const [headerRow, ...rows] = csvParseRows(rawData);
 
+  return processDsvData(headerRow, rows);
+}
+
+export function processTsvData(rawData) {
+  //TODO: add a alert at upload tsv to remind define first row
+  const [headerRow, ...rows] = tsvParseRows(rawData);
+
+  return processDsvData(headerRow, rows);
+}
+
+function processDsvData(headerRow, rows){
   if (!rows.length || !headerRow) {
     // looks like an empty file
     // resolve null, and catch them later in one place
@@ -418,12 +429,3 @@ export function validateInputData(data) {
 
   return {fields: updatedFields, rows};
 }
-
-export default {
-  processGeojson,
-  processCsvData,
-  processRowObject,
-  analyzerTypeToFieldType,
-  getFieldsFromData,
-  parseCsvDataByFieldType
-};

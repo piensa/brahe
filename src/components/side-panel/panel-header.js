@@ -166,7 +166,7 @@ export const SaveExportDropdown = ({
           icon={(<Picture height="16px" />)}
         />
 
-        <PanelItem
+        {/* <PanelItem
           label="Export Data"
           onClickHandler={onExportData}
           onClose={onClose}
@@ -178,7 +178,7 @@ export const SaveExportDropdown = ({
           onClickHandler={onExportConfig}
           onClose={onClose}
           icon={(<CodeAlt height="16px" />)}
-        />
+        /> */}
 
         {onSaveMap ? (
           <PanelItem

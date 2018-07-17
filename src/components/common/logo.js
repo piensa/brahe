@@ -30,7 +30,6 @@ const defaultProps = {
 const LogoTitle = styled.div`
   display: inline-block;
   margin-left: 6px;
-  padding-top: 12px;
 `;
 
 const LogoName = styled.div`
@@ -76,7 +75,7 @@ const LogoPng = () => (
 const KeplerGlLogo = ({appName, version}) => (
   <LogoWrapper className="side-panel-logo">
     <LogoSvgWrapper>
-      <LogoPng />
+      <LogoSvg />
     </LogoSvgWrapper>
     <LogoTitle className="logo__title">
       <LogoName className="logo__name">{appName}</LogoName>

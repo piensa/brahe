@@ -147,7 +147,7 @@ export const DEFAULT_MAP_STYLES = [
     url: `${STYLE_PREFIX}/light`,
     icon: `${ICON_PREFIX}/UBER_LIGHT_V2.png`,
     layerGroups: DEFAULT_LAYER_GROUPS,
-    defaultVisibility: true
+    defaultVisibility: false
   },
   {
     id: 'muted',
@@ -155,7 +155,7 @@ export const DEFAULT_MAP_STYLES = [
     url: `${STYLE_PREFIX}/muted-light`,
     icon: `${ICON_PREFIX}/UBER_MUTED_LIGHT.png`,
     layerGroups: DEFAULT_LAYER_GROUPS,
-    defaultVisibility: true
+    defaultVisibility: false
   },
   {
     id: 'muted_night',
@@ -163,7 +163,7 @@ export const DEFAULT_MAP_STYLES = [
     url: `${STYLE_PREFIX}/muted-night`,
     icon: `${ICON_PREFIX}/UBER_MUTED_NIGHT.png`,
     layerGroups: DEFAULT_LAYER_GROUPS,
-    defaultVisibility: true
+    defaultVisibility: false
   }
 ];
 

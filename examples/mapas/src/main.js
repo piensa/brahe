@@ -37,6 +37,7 @@ const Root = () => (
     <Router history={history}>
       <Route path="/(:id)" component={App} />
       <Route path="/demo/(:id)" component={App} />
+      <Route path="/maps/(:coor)" component={App} />
     </Router>
   </Provider>
 );

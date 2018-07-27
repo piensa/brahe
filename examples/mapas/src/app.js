@@ -60,14 +60,10 @@ class App extends Component {
   };
 
   componentWillMount() {
-    // if we pass an id as part f the url
+    // if we pass an id as part of the url
     // we ry to fetch along map configurations
     const {params: {id: sampleMapId} = {}} = this.props;
-
-    if (sampleMapId !== 'sampleData') {
-        this.props.dispatch(loadSampleConfigurations(sampleMapId));
-    }
-
+    this.props.dispatch(loadSampleConfigurations(sampleMapId));
     window.addEventListener('resize', this._onResize);
     this._onResize();
   }
@@ -96,6 +92,13 @@ class App extends Component {
 
   _loadSampleData(dataJson) {
     const { datasets, config } = dataJson;
+
+    const {params: {coor: coordinates} } = this.props;
+    if (coordinates) {
+        config.config.mapState = this._updateCoordinates(
+            config.config.mapState, coordinates);
+    }
+
     this.props.dispatch(
         addDataToMap({
             config,
@@ -112,6 +115,20 @@ class App extends Component {
             }))
         })
     );
+  }
+
+  _updateCoordinates(mapState, coordinates){
+      const coorArray = coordinates.slice(1, -1).split(',');
+      const zoom = Number(coorArray[2]) - 1; // - 1 for google/maps compatibility
+      if (coorArray.length === 3) {
+          return Object.assign({}, mapState, {
+              latitude: Number(coorArray[0]),
+              longitude: Number(coorArray[1]),
+              zoom: zoom >= 1 ?  zoom : 1
+          })
+      }
+
+      return mapState;
   }
 
   render() {

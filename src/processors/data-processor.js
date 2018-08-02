@@ -429,3 +429,12 @@ export function validateInputData(data) {
 
   return {fields: updatedFields, rows};
 }
+
+export default {
+  processGeojson,
+  processCsvData,
+  processRowObject,
+  analyzerTypeToFieldType,
+  getFieldsFromData,
+  parseCsvDataByFieldType
+};

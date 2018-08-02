@@ -40,7 +40,7 @@ import {
 // we have to recreate the state after the app is loaded
 const getDefaultState = () => {
   const visibleLayerGroups = {};
-  const styleType = 'mobility3d';
+  const styleType = 'dark';
   const topLayerGroups = {};
 
   return {

@@ -68,7 +68,18 @@ const CONFIG = {
 
   // Optional: Enables reading mapbox token from environment variable
   plugins: [
-    new webpack.EnvironmentPlugin(['MapboxAccessToken'])
+    new webpack.EnvironmentPlugin(['MapboxAccessToken']),
+    // UglifyJs
+    new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify('production')
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+        sourceMap: true,
+        compress: {
+            warnings: false,
+            comparisons: false  // don't optimize comparisons
+        }
+    })
   ]
 };
 
